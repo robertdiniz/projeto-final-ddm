@@ -13,8 +13,6 @@ export default function Logo() {
 const styles = StyleSheet.create({
     container: {
         position: 'relative',
-        borderColor: '#fff',
-        borderWidth: 1,
         height: 108,
         width: 128,
         justifyContent: 'center',
