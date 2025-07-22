@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function HomeScreen() {
   return (
     <View >
-        <Text>Hello</Text>
+        <Text style={styles.title}>Hello</Text>
     </View>
   );
 }
@@ -19,11 +19,7 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title:{
+    color: "#fff",
   },
 });
