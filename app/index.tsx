@@ -1,12 +1,12 @@
 import LoginForm from '@/components/LoginForm';
 import Logo from '@/components/Logo';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function Home() {
   return (
     <View style={styles.container}>
         <View style={styles.containerHeader}>
-            <Logo />
+            <Logo header={false}/>
             <Text style={styles.title}>
                 Mate a fome sem enrolação.
                 Explore, escolha e saboreie.

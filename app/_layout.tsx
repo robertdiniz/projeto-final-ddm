@@ -27,7 +27,18 @@ export default function RootLayout() {
           options={{
             title: 'Minha Tela Personalizada',
             headerTitle: () => <Logo header={true}/>,
-            headerStyle: { backgroundColor: '#F87171' },
+            headerStyle: { backgroundColor: '#F87171', },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+
+          }}
+        />
+        <Stack.Screen 
+          name="recipes" 
+          options={{
+            title: 'Minha Tela Personalizada',
+            headerTitle: () => <Logo header={true}/>,
+            headerStyle: { backgroundColor: '#F87171', },
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
           }}
