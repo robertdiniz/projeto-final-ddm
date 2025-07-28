@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     gap: 16,
+    backgroundColor: "#F5F5F5",
   },
   titleContainer: {
     flexDirection: 'row',

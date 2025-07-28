@@ -30,14 +30,22 @@ export default function RootLayout() {
             headerStyle: { backgroundColor: '#F87171', },
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
-
           }}
         />
         <Stack.Screen 
           name="recipes" 
           options={{
-            title: 'Minha Tela Personalizada',
+            headerShown: true,
             headerTitle: () => <Logo header={true}/>,
+            // Exemplo de botão de retornar
+            // headerLeft: () => {
+            //   const router = useRouter();
+            //   return (
+            //     <TouchableOpacity onPress={() => router.back()} style={{ marginLeft: 10 }}>
+            //       <Text style={{ color: '#fff' }}>Voltar</Text>
+            //     </TouchableOpacity>
+            //   );
+            // },
             headerStyle: { backgroundColor: '#F87171', },
             headerTintColor: '#fff',
             headerTitleAlign: 'center',

@@ -1,15 +1,23 @@
 import RecipeCard from '@/components/RecipeCard';
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import styles from '../../../styles/recipes/styles';
 
+const recipes = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+];
 
 export default function RecipeList() {
   return (
     <View style={styles.container}>
-      <RecipeCard id={1} />
-      <RecipeCard id={2} />
-      <RecipeCard id={3} />
-      <RecipeCard id={4} />
+      <FlatList
+        data={recipes}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <RecipeCard id={item.id} />}
+        contentContainerStyle={styles.list}
+      />
     </View>
   );
 }
