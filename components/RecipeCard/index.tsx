@@ -2,18 +2,28 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface RecipeCardProps {
-    id: number;
+interface Recipe {
+  id: number;
+  nome: string;
+  image_url: string;
+  tempo: number;
+  dificuldade: string;
+  categoria: string;
+  descricao: string;
 }
 
-export default function RecipeCard({ id  }: RecipeCardProps){
+interface RecipeCardProps {
+    recipe: Recipe;
+}
+
+export default function RecipeCard({ recipe  }: RecipeCardProps){
 
     const router = useRouter();
 
     const handlePress = () => {
         router.push({
             pathname:`/recipes/[id]`,
-            params: { id: String(id) },
+            params: { id: String(recipe.id) },
         })
     };
 
@@ -22,15 +32,19 @@ export default function RecipeCard({ id  }: RecipeCardProps){
             <View>
                 <View style={styles.imageContainer}></View>
                 <Image
-                    source={require('../../assets/images/bolo.jpg')}
+                    source={
+                        recipe.image_url && recipe.image_url.trim() !== ""
+                        ? { uri: recipe.image_url }
+                        : require('../../assets/images/image-not-found.png')
+                    }
                     style={styles.image}
-                ></Image>
+                />
             </View>
             <View style={styles.description}>
-                <Text style={styles.text}>Bolo de Chocolate</Text>
+                <Text style={styles.text}>{recipe.nome}</Text>
                 <View style={styles.timerContainer}>
                     <Ionicons name="time-outline" size={24} color="#FCA5A5" />
-                    <Text style={styles.textTimer}>45 min</Text>
+                    <Text style={styles.textTimer}>{recipe.tempo} min</Text>
                 </View>
             </View>
         </TouchableOpacity>
@@ -78,7 +92,7 @@ const styles = StyleSheet.create({
     textTimer: {
         fontSize: 14,
         color: "#FCA5A5",
-        fontWeight: 'semibold',
+        fontWeight: 'bold',
     },
     description: {
         backgroundColor: "#fafaf9",

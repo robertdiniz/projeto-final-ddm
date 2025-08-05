@@ -1,9 +1,16 @@
-import { StyleSheet, View } from 'react-native';
+import RecipeCard from '@/components/RecipeCard';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+
 
 
 export default function HomeScreen() {
+
+
+
   return (
     <View style={styles.container}>
+
       {/* <RecipeCard id={1} />
       <RecipeCard id={2} />
       <RecipeCard id={3} />

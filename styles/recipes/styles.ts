@@ -2,10 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 16,
-    gap: 16,
+    backgroundColor: "#F5F5F5",
   },
   titleContainer: {
     flexDirection: 'row',
@@ -19,6 +16,13 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
   },
+  list: {
+    width: "100%", 
+    gap: 16, 
+    padding: 12,
+    paddingTop: 30,
+    paddingBottom: 30
+  }
 });
 
 export default styles;

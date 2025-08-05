@@ -1,17 +1,14 @@
-import styles from '@/styles/recipes/detail';
 import Feather from '@expo/vector-icons/Feather';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Constants from 'expo-constants';
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-const recipe = {
-    nome: "Bolo de Chocolate",
-    image_url: "",
-    tempo: 3,
-    dificuldade: "Médio",
-    categoria: "Sobremesa",
-    descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit autem laudantium laborum unde fuga ullam nesciunt ea temporibus aliquid ut natus fugiat, consequatur suscipit eveniet est qui harum necessitatibus. cuzin?",
-}
+import styles from '@/styles/recipes/detail';
+import { Recipe } from '../type';
+
+const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 
 export default function RecipeDetail(){
@@ -19,7 +16,39 @@ export default function RecipeDetail(){
     const { id } = useLocalSearchParams();
     const router = useRouter();
 
+    const [recipe, setRecipe] = useState<Recipe | null>(null);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        if (!id) return;
+        fetch(`${API_URL}/recipes/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            setRecipe(data);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.error("Erro ao buscar receita:", err);
+            setLoading(false);
+        });
+    }, [id]);
+
+    if (loading) {
+        return (
+        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+            <ActivityIndicator size="large" color="#FCA5A5" />
+            <Text>Carregando receita...</Text>
+        </View>
+        );
+    }
+
+    if (!recipe) {
+        return (
+        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+            <Text>Receita não encontrada.</Text>
+        </View>
+        );
+    }
 
     return (
         <ScrollView style={styles.container}>            
@@ -31,7 +60,11 @@ export default function RecipeDetail(){
             </View>
             <View>
                 <Image
-                    source={require('../../../assets/images/bolo.jpg')}
+                    source={
+                        recipe.image_url && recipe.image_url.trim() !== ""
+                        ? { uri: recipe.image_url }
+                        : require('../../../assets/images/image-not-found.png')
+                    }
                     style={styles.image}
                 ></Image>
             </View>

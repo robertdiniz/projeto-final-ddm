@@ -4,32 +4,31 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 type InputProps = {
   label?: string;
   placeholder?: string;
-  secureTextEntry?: boolean | false,
+  value: string;
+  onChangeText: (text: string) => void;
+  secureTextEntry?: boolean;
   error?: string;
 }
 
 export default function InputComponent({
     label,
     placeholder,
-    // value,
-    // onChangeText,
-    // keyboardType = 'default',
-    secureTextEntry,
-    // error,
+    value,
+    onChangeText,
+    secureTextEntry = false,
+    error,
 }: InputProps) {
     return (
         <View>
             { label && <Text style={[styles.label]}>{label}</Text> }
             <TextInput
-                style={[styles.input]}
-                // placeholder={placeholder}
-                // value={value}
-                // onChangeText={onChangeText}
-                // keyboardType={keyboardType}
-                // secureTextEntry={secureTextEntry}
+                style={[styles.input, error ? styles.inputError : null]}
+                placeholder={placeholder}
+                value={value}
+                onChangeText={onChangeText}
+                secureTextEntry={secureTextEntry}
             />
-
-            {/* {error && <Text style={styles.error}>{error}</Text>} */}
+            {error && <Text style={styles.error}>{error}</Text>}
         </View>
     );
 }

@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, Text, View } from "react-native";
-import { Recipe, RecipeFormData } from '../type';
+import { Recipe, RecipeFormData } from '../recipes/type';
 
 const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
