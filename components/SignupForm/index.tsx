@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
@@ -8,7 +7,7 @@ import * as yup from 'yup';
 
 import InputComponent from "../InputComponent";
 
-const API_URL = Constants.expoConfig?.extra?.apiUrl;
+// const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 type SignUpProps = {
   username: string;
@@ -45,7 +44,7 @@ export default function SignUpForm() {
     setSuccessMessage(null);
 
     try {
-      const resCheck = await fetch(`${API_URL}/users?username=${data.username}`);
+      const resCheck = await fetch(`http://192.168.2.7:3000/users?username=${data.username}`);
       const existingUsers = await resCheck.json();
 
       if (existingUsers.length > 0) {
@@ -53,7 +52,7 @@ export default function SignUpForm() {
         return;
       }
 
-      const resCreate = await fetch(`${API_URL}/users`, {
+      const resCreate = await fetch(`http://192.168.2.7:3000/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -11,19 +11,25 @@
       "password": "1234"
     },
     {
-      "id": "8b14",
-      "username": "aninha",
+      "id": "3",
+      "username": "anna",
       "password": "1234"
     },
     {
-      "id": "39fa",
-      "username": "djdjf",
+      "id": "4",
+      "username": "jordan",
+      "password": "1234"
+    },
+    {
+      "id": "5",
+      "username": "willian",
       "password": "1234"
     }
   ],
   "recipes": [
     {
       "id": "1",
+      "userId": "1",
       "nome": "Bolo de Chocolate",
       "image_url": "https://i.imgur.com/OBVFx5Q.jpeg",
       "tempo": 3,
@@ -33,6 +39,7 @@
     },
     {
       "id": "2",
+      "userId": "2",
       "nome": "Pizza Margherita",
       "image_url": "https://i.imgur.com/BRwPtNl.jpeg",
       "tempo": 2,
@@ -42,6 +49,7 @@
     },
     {
       "id": "3",
+      "userId": "1",
       "nome": "Sopa de Legumes",
       "image_url": "https://i.imgur.com/cGI7JDo.jpeg",
       "tempo": 1,
@@ -51,6 +59,7 @@
     },
     {
       "id": "4",
+      "userId": "1",
       "nome": "Lasanha de Berinjela",
       "image_url": "https://i.imgur.com/pH2sUWE.jpeg",
       "tempo": 4,
@@ -60,6 +69,7 @@
     },
     {
       "id": "5",
+      "userId": "2",
       "nome": "Panqueca de Aveia",
       "image_url": "https://i.imgur.com/YicJjjI.jpeg",
       "tempo": 1,
@@ -69,6 +79,7 @@
     },
     {
       "id": "6",
+      "userId": "2",
       "nome": "Estrogonofe de Frango",
       "image_url": "https://i.imgur.com/mtEgNMt.jpeg",
       "tempo": 2,
@@ -78,6 +89,7 @@
     },
     {
       "id": "7",
+      "userId": "2",
       "nome": "Salada Caesar",
       "image_url": "https://i.imgur.com/UUtN0TD.jpeg",
       "tempo": 1,
@@ -87,7 +99,8 @@
     },
     {
       "id": "8",
-      "nome": "Salada fudeu",
+      "userId": "1",
+      "nome": "Salada Sem Imagem",
       "image_url": "",
       "tempo": 1,
       "dificuldade": "Fácil",

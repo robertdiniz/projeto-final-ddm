@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 6,
     padding: 10,
-    color: "#FCA5A5",
+    color: "#E67070",
     fontWeight: "bold",
   },
   textarea: {
@@ -37,14 +37,14 @@ export const styles = StyleSheet.create({
   picker: {
     backgroundColor: "#FFE1E1",
     borderColor: "#FECACA",
-    color: "#FCA5A5",
+    color: "#E67070",
     fontWeight: "bold",
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 12,
   },
   button: {
-    backgroundColor: "#FCA5A5",
+    backgroundColor: "#F87171",
     color: "#fff",
     fontWeight: "bold",
     padding: 10,

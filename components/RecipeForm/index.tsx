@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import * as yup from "yup";
 
 import { styles } from "./styleForm";
@@ -69,14 +69,21 @@ export default function RecipeForm({ initialValues, onSubmit, submitText = "Salv
     <ScrollView contentContainerStyle={styles.container}>
 
         <View>
-            <Image
-                source={
-                    imageUrl && imageUrl.trim() !== ""
-                    ? { uri: imageUrl }
-                    : require('../../assets/images/image-not-found.png')
-                }
-                style={styles.image}
-            />
+            <View 
+                style={{
+                    borderRadius: 8,
+                    backgroundColor: !imageUrl ? 'rgba(252, 165, 165, 0.3)' : 'transparent',
+                }}
+            >
+                <Image
+                    source={
+                        imageUrl && imageUrl.trim() !== ""
+                        ? { uri: imageUrl }
+                        : require('../../assets/images/image-not-found.png')
+                    }
+                    style={styles.image}
+                />
+            </View>
             <TouchableOpacity onPress={pickImage} style={styles.button}>
                 <Text style={styles.buttonText}>Selecionar Imagem</Text>
             </TouchableOpacity>
@@ -170,7 +177,20 @@ export default function RecipeForm({ initialValues, onSubmit, submitText = "Salv
             {errors.descricao && <Text style={styles.error}>{errors.descricao.message}</Text>}
         </View>
 
-        <Button title={submitText} color="#FCA5A5" onPress={handleSubmit(onSubmit)} />
+        <TouchableOpacity 
+            onPress={handleSubmit(onSubmit)} 
+            style={{
+                backgroundColor: '#F87171',
+                padding: 12,
+                borderRadius: 8,
+                alignItems: 'center',
+                marginTop: 12,
+            }}
+            >
+            <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}>
+                { initialValues ? submitText : "Criar Receita"}
+            </Text>
+        </TouchableOpacity>
 
     </ScrollView>
   );

@@ -8,7 +8,7 @@ import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } fr
 import styles from '@/styles/recipes/detail';
 import { Recipe } from '../type';
 
-const API_URL = Constants.expoConfig?.extra?.apiUrl;
+// const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 
 export default function RecipeDetail(){
@@ -21,7 +21,7 @@ export default function RecipeDetail(){
 
     useEffect(() => {
         if (!id) return;
-        fetch(`${API_URL}/recipes/${id}`)
+        fetch(`http://192.168.2.7:3000/recipes/${id}`)
         .then(res => res.json())
         .then(data => {
             setRecipe(data);

@@ -2,14 +2,16 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import Logo from '@/components/Logo';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Feather from '@expo/vector-icons/Feather';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useRouter } from 'expo-router';
+
 
 export default function TabLayout() {
-
+  const router = useRouter();
   const colorScheme = useColorScheme();
 
   return (
@@ -17,8 +19,8 @@ export default function TabLayout() {
       screenOptions={{
         // Lembrar de adaptar para light/dark.
         // tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
+        headerShown: true,
+        // tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
@@ -33,19 +35,77 @@ export default function TabLayout() {
         tabBarInactiveTintColor: '#FECACA',
       }}>
       <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name="recipes/index"
         options={{
           title: "Receitas",
-          tabBarIcon: ({ color }) => <MaterialIcons name="menu-book" size={24} color={color} />
+          headerShown: true,
+          tabBarIcon: ({ color }) => <MaterialIcons name="menu-book" size={24} color={color} />,
+          headerTitle: () => <Logo header={true}/>,
+            headerStyle: { backgroundColor: '#F87171', },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Feather 
+                name="search" 
+                size={24} 
+                color="#fff" 
+                style={{ marginRight: 16 }}
+                onPress={() => {
+                  router.push('/search');
+                }}
+              />
+            ),
+        }}
+      />
+      <Tabs.Screen
+        name="recipes/create"
+        options={{
+          title: 'Criar Receita',
+          headerTitle: () => <Logo header={true}/>,
+            headerStyle: { backgroundColor: '#F87171', },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Feather 
+                name="search" 
+                size={24} 
+                color="#fff" 
+                style={{ marginRight: 16 }}
+                onPress={() => {
+                  router.push('/search');
+                }}
+              />
+            ),
+          tabBarIcon: ({ color }) => <MaterialIcons
+              name="add-circle"
+              size={24}
+              color={color}
+            />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile/index"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color }) => <MaterialIcons name="person" size={24} color={color} />,
+          headerTitle: () => <Logo header={true}/>,
+            headerStyle: { backgroundColor: '#F87171', },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Feather 
+                name="search" 
+                size={24} 
+                color="#fff" 
+                style={{ marginRight: 16 }}
+                onPress={() => {
+                  router.push('/search');
+                }}
+              />
+            ),
         }}
       />
     </Tabs>
   );
 }
+

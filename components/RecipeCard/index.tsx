@@ -4,6 +4,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface Recipe {
   id: number;
+  userId?: number;
   nome: string;
   image_url: string;
   tempo: number;

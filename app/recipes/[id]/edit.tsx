@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, Text, View } from "react-native";
 import { Recipe, RecipeFormData } from '../type';
 
-const API_URL = Constants.expoConfig?.extra?.apiUrl;
+// const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 export default function RecipeUpdate(){
 
@@ -19,7 +19,7 @@ export default function RecipeUpdate(){
 
     useEffect(() => {
         if (!id) return;
-        fetch(`${API_URL}/recipes/${id}`)
+        fetch(`http://192.168.2.7:3000/recipes/${id}`)
         .then(res => res.json())
         .then(data => {
             setRecipe(data);
@@ -37,7 +37,7 @@ export default function RecipeUpdate(){
         const updatedRecipe = { ...recipe, ...data };
         setSubmitting(true);
 
-        fetch(`${API_URL}/recipes/${id}`, {
+        fetch(`http://192.168.2.7:3000/recipes/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedRecipe),
@@ -58,7 +58,7 @@ export default function RecipeUpdate(){
 
     if (loading) {
         return (
-        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <View style={[styles.container, { height: "100%", justifyContent: 'center', alignItems: 'center' }]}>
             <ActivityIndicator size="large" color="#FCA5A5" />
             <Text>Carregando receita...</Text>
         </View>

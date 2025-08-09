@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
@@ -8,7 +7,7 @@ import * as yup from 'yup';
 
 import InputComponent from "../InputComponent";
 
-const API_URL = Constants.expoConfig?.extra?.apiUrl;
+// const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 type LoginProps = {
     username: string;
@@ -40,12 +39,12 @@ export default function LoginForm(){
         setLoginSuccess(null);
 
         try {
-            const res = await fetch(`${API_URL}/users?username=${data.username}&password=${data.password}`);
+            const res = await fetch(`http://192.168.2.7:3000/users?username=${data.username}&password=${data.password}`);
             const users = await res.json();
 
         if (users.length > 0) {
             setLoginSuccess('Login realizado com sucesso!');
-            router.push('/(tabs)');
+            router.push('/recipes');
         } else {
             setLoginError('Usuário ou senha incorretos');
         }

@@ -6,8 +6,12 @@ import 'react-native-reanimated';
 
 import Logo from '@/components/Logo';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Feather from '@expo/vector-icons/Feather';
+import { useRouter } from 'expo-router';
+
 
 export default function RootLayout() {
+  const router = useRouter();
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -25,11 +29,23 @@ export default function RootLayout() {
         <Stack.Screen 
           name="(tabs)" 
           options={{
+            headerShown: false,
             title: 'Minha Tela Personalizada',
             headerTitle: () => <Logo header={true}/>,
             headerStyle: { backgroundColor: '#F87171', },
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
+            headerRight: () => (
+              <Feather 
+                name="search" 
+                size={24} 
+                color="#fff" 
+                style={{ marginRight: 16 }}
+                onPress={() => {
+                  router.push('/search');
+                }}
+              />
+            ),
           }}
         />
         <Stack.Screen 
@@ -37,21 +53,18 @@ export default function RootLayout() {
           options={{
             headerShown: true,
             headerTitle: () => <Logo header={true}/>,
-            // Exemplo de botão de retornar
-            // headerLeft: () => {
-            //   const router = useRouter();
-            //   return (
-            //     <TouchableOpacity onPress={() => router.back()} style={{ marginLeft: 10 }}>
-            //       <Text style={{ color: '#fff' }}>Voltar</Text>
-            //     </TouchableOpacity>
-            //   );
-            // },
             headerStyle: { backgroundColor: '#F87171', },
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
           }}
         />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        <Stack.Screen name="search" options={{ 
+          headerShown: true,
+          headerStyle: { backgroundColor: '#F87171', },
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+        }} />
         <Stack.Screen name="signup" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />

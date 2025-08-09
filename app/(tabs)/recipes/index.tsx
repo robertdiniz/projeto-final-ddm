@@ -1,13 +1,11 @@
 import { Recipe } from '@/app/recipes/type';
 import RecipeCard from '@/components/RecipeCard';
-import Constants from 'expo-constants';
 import { FlatList, View } from 'react-native';
 import styles from '../../../styles/recipes/styles';
 
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Text } from 'react-native';
 
-const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 export default function RecipeList() {
 
@@ -15,7 +13,7 @@ export default function RecipeList() {
     const [loading, setLoading] = useState(true);
   
     useEffect(() => {
-      fetch(`${API_URL}/recipes`)
+      fetch(`http://192.168.2.7:3000/recipes`)
         .then(res => res.json())
         .then(data => {
           setRecipes(data);
