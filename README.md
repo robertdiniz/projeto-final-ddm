@@ -1,4 +1,4 @@
-# Bem vindo ao App de Receitas 👋
+# Bem vindo ao ÔFOME 👋
 
 Este é um [Expo](https://expo.dev) projeto criado com [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
