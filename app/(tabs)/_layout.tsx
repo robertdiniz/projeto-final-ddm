@@ -84,7 +84,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile/[id]/index"
+        name="profile/index"
         options={{
           title: "Perfil",
           tabBarIcon: ({ color }) => <MaterialIcons name="person" size={24} color={color} />,
@@ -99,7 +99,7 @@ export default function TabLayout() {
                 color="#fff" 
                 style={{ marginRight: 16 }}
                 onPress={() => {
-                  router.push('/search');
+                  router.push('/profile/index');
                 }}
               />
             ),

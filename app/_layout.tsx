@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 
 import Logo from '@/components/Logo';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { FavoritesProvider } from '@/contexts/FavoriteContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from 'expo-router';
@@ -24,53 +25,64 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen 
-            name="(tabs)" 
-            options={{
-              headerShown: false,
-              title: 'Minha Tela Personalizada',
-              headerTitle: () => <Logo header={true}/>,
-              headerStyle: { backgroundColor: '#F87171', },
-              headerTintColor: '#fff',
-              headerTitleAlign: 'center',
-              headerRight: () => (
-                <Feather 
-                  name="search" 
-                  size={24} 
-                  color="#fff" 
-                  style={{ marginRight: 16 }}
-                  onPress={() => {
-                    router.push('/search');
-                  }}
-                />
-              ),
-            }}
-          />
-          <Stack.Screen 
-            name="recipes" 
-            options={{
+    <FavoritesProvider>
+      <AuthProvider>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen 
+              name="(tabs)" 
+              options={{
+                headerShown: false,
+                title: 'Minha Tela Personalizada',
+                headerTitle: () => <Logo header={true}/>,
+                headerStyle: { backgroundColor: '#F87171', },
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+                headerRight: () => (
+                  <Feather 
+                    name="search" 
+                    size={24} 
+                    color="#fff" 
+                    style={{ marginRight: 16 }}
+                    onPress={() => {
+                      router.push('/search');
+                    }}
+                  />
+                ),
+              }}
+            />
+            <Stack.Screen 
+              name="recipes" 
+              options={{
+                headerShown: true,
+                headerTitle: () => <Logo header={true}/>,
+                headerStyle: { backgroundColor: '#F87171', },
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+              }}
+            />
+            <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+            <Stack.Screen name="search" options={{ 
               headerShown: true,
-              headerTitle: () => <Logo header={true}/>,
               headerStyle: { backgroundColor: '#F87171', },
               headerTintColor: '#fff',
               headerTitleAlign: 'center',
-            }}
-          />
-          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-          <Stack.Screen name="search" options={{ 
-            headerShown: true,
-            headerStyle: { backgroundColor: '#F87171', },
-            headerTintColor: '#fff',
-            headerTitleAlign: 'center',
-          }} />
-          <Stack.Screen name="signup" options={{ headerShown: false }} />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </AuthProvider>
+            }} />
+            <Stack.Screen name="signup" options={{ headerShown: false }} />
+            <Stack.Screen name="profile/[id]/index"               
+              options={{
+                headerShown: true,
+                headerTitle: () => <Logo header={true}/>,
+                headerStyle: { backgroundColor: '#F87171', },
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+              }} 
+            />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </AuthProvider>
+    </FavoritesProvider>
   );
 }

@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
         padding: 12,
     },
     image: {
-        width: '100%',
+        width: 180,
         height: 180,
-        borderRadius: 8,
+        borderRadius: 100,
         zIndex: -1
     },
     flex: {
@@ -62,6 +62,40 @@ const styles = StyleSheet.create({
     description: {
         padding: 4,
         paddingBottom: 100,
+    },
+    profile: {
+        flex: 1,
+        // alignItems: 'center',
+        paddingBottom: 32,
+    },
+    favorites: {
+        marginTop: 16,
+        fontSize: 24,
+        color: "#FCA5A5",
+        fontWeight: "bold",
+        textAlign: 'center',
+    },
+    imageContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        width: "100%",
+        height: 180,
+        zIndex: 1,
+    },
+    shadowProp: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    noFavorites: { 
+        fontWeight: "bold", 
+        color: "#FCA5A5", 
+        fontSize: 16, 
+        textAlign: "center",
+        marginTop: 32 
     }
 });
 

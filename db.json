@@ -35,7 +35,7 @@
       "tempo": 3,
       "dificuldade": "Médio",
       "categoria": "Sobremesa",
-      "descricao": "Um bolo de chocolate fofinho e úmido, perfeito para qualquer ocasião. <br> Preparado com cacau em pó, ovos, leite e fermento, é coberto com uma deliciosa calda cremosa de chocolate. Ideal para acompanhar um café da tarde ou servir como sobremesa especial."
+      "descricao": "Um bolo de chocolate fofinho e úmido, perfeito para qualquer ocasião. Preparado com cacau em pó, ovos, leite e fermento, é coberto com uma deliciosa calda cremosa de chocolate. Ideal para acompanhar um café da tarde ou servir como sobremesa especial."
     },
     {
       "id": "2",
@@ -92,16 +92,6 @@
       "userId": "2",
       "nome": "Salada Caesar",
       "image_url": "https://i.imgur.com/UUtN0TD.jpeg",
-      "tempo": 1,
-      "dificuldade": "Fácil",
-      "categoria": "Jantar",
-      "descricao": "Salada refrescante e saborosa feita com alface romana, croutons crocantes, queijo parmesão ralado e molho Caesar. Uma ótima opção para refeições leves e nutritivas, podendo incluir tiras de frango grelhado."
-    },
-    {
-      "id": "8",
-      "userId": "1",
-      "nome": "Salada Sem Imagem",
-      "image_url": "",
       "tempo": 1,
       "dificuldade": "Fácil",
       "categoria": "Jantar",

@@ -1,3 +1,4 @@
+import { useFavorites } from '@/contexts/FavoriteContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -20,6 +21,7 @@ interface RecipeCardProps {
 export default function RecipeCard({ recipe  }: RecipeCardProps){
 
     const router = useRouter();
+    const { toggleFavorite, isFavorite } = useFavorites();
 
     const handlePress = () => {
         router.push({
@@ -40,6 +42,19 @@ export default function RecipeCard({ recipe  }: RecipeCardProps){
                     }
                     style={styles.image}
                 />
+                <TouchableOpacity
+                    onPress={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(recipe);
+                    }}
+                    style={styles.favoriteIcon}
+                    >
+                    <Ionicons
+                        name={isFavorite(recipe.id) ? "heart" : "heart-outline"}
+                        size={28}
+                        color="white"
+                    />
+                </TouchableOpacity>
             </View>
             <View style={styles.description}>
                 <Text style={styles.text}>{recipe.nome}</Text>
@@ -108,5 +123,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 2
+    },
+    favoriteIcon: {
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        zIndex: 10,
     },
 });

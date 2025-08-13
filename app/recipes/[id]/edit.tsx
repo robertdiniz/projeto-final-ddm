@@ -1,12 +1,9 @@
 import RecipeForm from '@/components/RecipeForm';
 import styles from '@/styles/recipes/detail';
-import Constants from 'expo-constants';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, Text, View } from "react-native";
 import { Recipe, RecipeFormData } from '../type';
-
-// const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 export default function RecipeUpdate(){
 
@@ -67,7 +64,7 @@ export default function RecipeUpdate(){
 
     if (!recipe) {
         return (
-        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <View style={[styles.container, { height: "100%", justifyContent: 'center', alignItems: 'center' }]}>
             <Text>Receita não encontrada.</Text>
         </View>
         );

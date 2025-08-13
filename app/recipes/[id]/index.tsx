@@ -1,15 +1,11 @@
 import Feather from '@expo/vector-icons/Feather';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Constants from 'expo-constants';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import styles from '@/styles/recipes/detail';
 import { Recipe } from '../type';
-
-// const API_URL = Constants.expoConfig?.extra?.apiUrl;
-
 
 export default function RecipeDetail(){
 
@@ -35,7 +31,7 @@ export default function RecipeDetail(){
 
     if (loading) {
         return (
-        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <View style={[styles.container, { height: "100%", justifyContent: 'center', alignItems: 'center' }]}>
             <ActivityIndicator size="large" color="#FCA5A5" />
             <Text>Carregando receita...</Text>
         </View>
@@ -44,14 +40,30 @@ export default function RecipeDetail(){
 
     if (!recipe) {
         return (
-        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <View style={[styles.container, { height: "100%", justifyContent: 'center', alignItems: 'center' }]}>
             <Text>Receita não encontrada.</Text>
         </View>
         );
     }
 
     return (
-        <ScrollView style={styles.container}>            
+        <ScrollView style={styles.container}>
+            {recipe.userId && (
+                <TouchableOpacity
+                    onPress={() => router.push(`/profile/${recipe.userId}`)}
+                    style={{
+                    marginTop: 20,
+                    padding: 12,
+                    backgroundColor: '#FCA5A5',
+                    borderRadius: 8,
+                    alignItems: 'center',
+                    }}
+                >
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>
+                    Ver Perfil do Criador
+                    </Text>
+                </TouchableOpacity>
+                )}            
             <View style={styles.headerDetail}>
                 <Text style={styles.title}>{recipe.nome}</Text>
                 <TouchableOpacity onPress={() => router.push(`/recipes/${id}/edit`)} style={[styles.flex, styles.iconEdit]}>
@@ -90,8 +102,3 @@ export default function RecipeDetail(){
         </ScrollView>
     );
 };
-
-{/* <TouchableOpacity onPress={() => router.back()} style={{ padding: 12, backgroundColor: '#FCA5A5', marginTop: 20 }}>
-    <Text style={{ color: 'white', fontWeight: 'bold' }}>Voltar</Text>
-    </TouchableOpacity> */}
-{/* </View> */}

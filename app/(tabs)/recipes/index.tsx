@@ -27,7 +27,7 @@ export default function RecipeList() {
   
     if (loading) {
       return (
-        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <View style={[styles.container, { height: "100%",justifyContent: 'center', alignItems: 'center' }]}>
           <ActivityIndicator size="large" color="#FCA5A5" />
           <Text>Carregando receitas...</Text>
         </View>
