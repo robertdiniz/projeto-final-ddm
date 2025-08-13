@@ -8,6 +8,8 @@ Este é um [Expo](https://expo.dev) projeto criado com [`create-expo-app`](https
 
 1. React Native Expo (front app)
 2. JSON Server (fake api)
+3. React Hook Form + Yup
+4. AsyncStorage para Favoritos
 
 ## Passo a passo
 
