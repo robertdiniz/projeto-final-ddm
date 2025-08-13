@@ -70,9 +70,41 @@ export default function RecipeUpdate(){
         );
     }
 
+    const handleDelete = () => {
+        if (!recipe) return;
+
+        Alert.alert(
+            "Confirmar exclusão",
+            "Deseja realmente deletar esta receita?",
+            [
+            { text: "Cancelar", style: "cancel" },
+            {
+                text: "Deletar",
+                style: "destructive",
+                onPress: () => {
+                setSubmitting(true);
+                fetch(`http://192.168.2.7:3000/recipes/${id}`, {
+                    method: "DELETE",
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error("Erro ao deletar");
+                    Alert.alert("Sucesso", "Receita deletada com sucesso!");
+                    router.push("/recipes"); // ou outra página de lista
+                })
+                .catch(err => {
+                    console.error(err);
+                    Alert.alert("Erro", "Não foi possível deletar.");
+                })
+                .finally(() => setSubmitting(false));
+                }
+            }
+            ]
+        );
+    };
+
     return (
         <ScrollView style={styles.container}>
-            <RecipeForm initialValues={recipe} onSubmit={handleSubmit} submitText="Atualizar Receita" />
+            <RecipeForm initialValues={recipe} onSubmit={handleSubmit} submitText="Atualizar Receita" onDelete={handleDelete} />
         </ScrollView>
     );
 };

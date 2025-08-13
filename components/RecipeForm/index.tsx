@@ -1,10 +1,11 @@
 import { Recipe } from "@/app/recipes/type";
+import Feather from "@expo/vector-icons/Feather";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import * as yup from "yup";
 
 import { styles } from "./styleForm";
@@ -13,6 +14,7 @@ import { styles } from "./styleForm";
 interface RecipeFormProps {
   initialValues?: Recipe;
   onSubmit: (data: RecipeFormData) => void;
+  onDelete?: () => void;
   submitText?: string;
 }
 
@@ -32,7 +34,7 @@ const schema = yup.object().shape({
     descricao: yup.string().required("Descrição é obrigatória"),
 });
 
-export default function RecipeForm({ initialValues, onSubmit, submitText = "Salvar" }: RecipeFormProps) {
+export default function RecipeForm({ initialValues, onSubmit, onDelete, submitText = "Salvar" }: RecipeFormProps) {
   const { control, handleSubmit, watch, formState: {errors} } = useForm<RecipeFormData>({
     defaultValues: initialValues || {
       nome: "",
@@ -65,8 +67,37 @@ export default function RecipeForm({ initialValues, onSubmit, submitText = "Salv
     }
   };
 
+  const confirmDelete = () => {
+    Alert.alert(
+      "Confirmar exclusão",
+      "Tem certeza que deseja deletar esta receita?",
+      [
+        { text: "Cancelar", style: "cancel" },
+        { text: "Excluir", style: "destructive", onPress: () => onDelete && onDelete() }
+      ]
+    );
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
+
+        {initialValues && (
+            <TouchableOpacity
+            onPress={confirmDelete}
+            style={{
+                backgroundColor: "#dc2626",
+                padding: 10,
+                borderRadius: 8,
+                marginBottom: 16,
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'center',
+            }}
+            >
+            <Feather name="trash-2" size={20} color="white" style={{ marginRight: 8 }} />
+            <Text style={{ color: "white", fontWeight: "bold" }}>Deletar Receita</Text>
+            </TouchableOpacity>
+        )}
 
         <View>
             <View 
